@@ -1,10 +1,10 @@
 <template>
   <div class="navbar">
     <!-- 左侧logo图片 -->
-    <img src="@/assets/img/logo.3673fab5.png" alt="" class="breadcrumb-container">
+
     <!-- 右侧个人信息 -->
     <div class="right-menu">
-      <el-row class="el-row">
+      <!-- <el-row class="el-row">
         <el-col :span="5">
           <div style="height: 60px; line-height: 60px;">
             <img src="@/assets/img/userImg.png" class="user-avatar" style="vertical-align: middle;">
@@ -26,11 +26,10 @@
             <i class="el-icon-caret-bottom" />
           </div>
         </el-col>
-      </el-row>
+      </el-row> -->
+      1111
     </div>
-    <div v-if="isShow" class="el-tooltip__popper" style="transform-origin: center top; z-index: 2020;">
-      退出登入
-    </div>
+
   </div>
 </template>
 
@@ -44,13 +43,13 @@ export default {
   },
   computed: {
     ...mapGetters(['userName'])
-  },
-  methods: {
-    async logout() {
-      await this.$store.commit('user/LOGOUT')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    }
   }
+  // methods: {
+  //   async logout() {
+  //     await this.$store.commit('user/LOGOUT')
+  //     this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+  //   }
+  // }
 
 }
 </script>

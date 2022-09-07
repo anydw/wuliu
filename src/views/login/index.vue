@@ -1,56 +1,50 @@
 <template>
   <div class="login-container">
-    <el-form
-      ref="loginForm"
-      :model="loginForm"
-      :rules="rules"
-      class="login-form"
-      auto-complete="on"
-      label-position="left"
-    >
-      <img src="../../assets/img/logo.png" alt="" class="login-logo">
-      <el-form-item prop="loginName">
-        <span class="svg-container">
-          <svg-icon icon-class="phone" />
-        </span>
-        <el-input v-model="loginForm.loginName" type="text" placeholder="请输入账号" />
-      </el-form-item>
-
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input ref="inputPwd" v-model="loginForm.password" :type="`${isShow ? '' : 'password'}`" placeholder="请输入密码" />
-        <span class="svg-container" @click="changePwd">
-          <svg-icon :icon-class="`${isShow ? 'eye-open' : 'eye' }`" />
-        </span>
-      </el-form-item>
-
-      <el-form-item prop="code">
-        <el-row>
-          <el-col :span="17">
-            <span class="svg-container">
-              <svg-icon icon-class="security, protection, shield" />
-            </span>
-            <el-input v-model="loginForm.code" type="text" placeholder="请输入验证码" />
-          </el-col>
-          <el-col :span="7">
-            <img :src="url" alt="" @click="toggleImg">
-          </el-col>
-        </el-row>
-
-      </el-form-item>
-      <el-button type="primary" class="login-btn" style="width:100%;margin-bottom:30px;" :loading="loading" @click="loginBtn">登录</el-button>
-    </el-form>
+    <div>
+      <el-form
+        ref="loginForm"
+        :model="loginForm"
+        :rules="rules"
+        class="login-form"
+        auto-complete="on"
+        label-position="left"
+      >
+        <div>
+          <img src="@/assets/common/img_logo.png" alt="" style="margin-left:80px">
+        </div>
+        <!-- <img src="../../assets/img/logo.png" alt="" class="login-logo"> -->
+        <el-form-item prop="loginName">
+          <span class="svg-container">
+            <svg-icon icon-class="phone" />
+          </span>
+          <el-input v-model="loginForm.loginName" type="text" placeholder="请输入账号" />
+        </el-form-item>
+        <el-form-item prop="password">
+          <span class="svg-container">
+            <svg-icon icon-class="password" />
+          </span>
+          <el-input v-model="input" placeholder="请输入密码" show-password />
+        </el-form-item>
+        <div style="display:flex">
+          <div style="margin-right:10px;"><input type="checkbox" class="点击"></div>
+          <div style="margin-bottom:20px;font-size:14px">记住密码</div>
+        </div>
+        <el-button type="primary" class="login-btn" style="width:100%;margin-bottom:30px;" :loading="loading" @click="loginBtn">立即登录</el-button>
+      </el-form>
+    </div>
+    <div style="width:559px;height:517px;">
+      <img src="@/assets/common/img_chatu.png" alt="wenb" class="chatu">
+    </div>
   </div>
 </template>
 
 <script>
-import { imgeCode } from '@/api/user'
+// import { imgeCode } from '@/api/user'
 export default {
   name: 'Login',
   data() {
     return {
+      input: '111111',
       loginForm: {
         loginName: 'admin',
         password: 'admin',
@@ -64,9 +58,6 @@ export default {
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' }
-        ],
-        code: [
-          { required: true, message: '请输入验证码', trigger: 'blur' }
         ]
       },
       isShow: false,
@@ -75,7 +66,7 @@ export default {
     }
   },
   async created() {
-    this.toggleImg()
+    // this.toggleImg()
   },
   methods: {
     changePwd() {
@@ -88,24 +79,24 @@ export default {
     async loginBtn() {
       this.loading = true
       try {
-        await this.$refs.loginForm.validate()
-        await this.$store.dispatch('user/login', this.loginForm)
+        // await this.$refs.loginForm.validate()
+        // await this.$store.dispatch('user/login', this.loginForm)
         this.$router.push('/home')
       } catch (error) {
         console.log(error.message)
       } finally {
         this.loading = false
       }
-    },
-    async toggleImg() {
-      this.loginForm.clientToken = this.loginForm.clientToken + 1
-      try {
-        const res = await imgeCode(this.loginForm.clientToken)
-        this.url = res.config.url
-      } catch (error) {
-        console.log(error)
-      }
     }
+    // async toggleImg() {
+    //   this.loginForm.clientToken = this.loginForm.clientToken + 1
+    //   try {
+    //     const res = await imgeCode(this.loginForm.clientToken)
+    //     this.url = res.config.url
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
   }
 }
 </script>
@@ -119,6 +110,7 @@ $cursor: #999;
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
   .login-container .el-input input {
     color: $cursor;
+    width: 50xp;
   }
 }
 
@@ -126,8 +118,8 @@ $cursor: #999;
 .login-container {
   .el-input {
     display: inline-block;
-    height: 47px;
-    width: 85%;
+    height: 50px;
+    width: 280px;
 
     input {
       background: transparent;
@@ -135,7 +127,7 @@ $cursor: #999;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
       color: $light_gray;
-      height: 47px;
+      height: 50px;
       caret-color: $cursor;
 
       &:-webkit-autofill {
@@ -156,7 +148,7 @@ $cursor: #999;
     }
   }
   .el-button {
-        display: inline-block;
+   display: inline-block;
     line-height: 1;
     white-space: nowrap;
     cursor: pointer;
@@ -181,7 +173,7 @@ $cursor: #999;
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
+$bg:#E5E5E5;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 
@@ -190,21 +182,19 @@ $light_gray:#eee;
   width: 100%;
   background-color: $bg;
   overflow: hidden;
-  background: url('../../assets/img/bg.png') no-repeat;
-  background-size:cover;
+  // background: url('../../assets/img/bg.png') no-repeat;
+  // background-size:cover;
   .login-form {
-   position: absolute;
-    width: 518px;
-    height: 388px;
-    top: 50%;
-    left: 50%;
-    margin-top: -194px;
-    margin-left: -259px;
+   position: fixed;
+    width: 398px;
+    height: 516px;
+    top: 69px;
+    left: 200px;
     padding: 76px 35px 0;
     background: #fff;
     -webkit-box-shadow: 0 3px 70px 0 rgb(30 111 72 / 35%);
     box-shadow: 0 3px 70px 0 rgb(30 111 72 / 35%);
-    border-radius: 10px;
+    border-radius: 30px 0 0 30px ;
   }
 
   .tips {
@@ -227,33 +217,31 @@ $light_gray:#eee;
     display: inline-block;
   }
 
-      .login-logo {
-          position: absolute;
-           width: 96px;
-           height: 96px;
-           top: -46px;
-           left: 50%;
-           margin-left: -48px;
-      }
       .login-btn {
-        width: 100%;
-      height: 52px;
-      background: linear-gradient(262deg,#2e50e1,#6878f0);
+      width: 280px;
+      height: 50px;
+      background: rgb(255, 178, 0);
       opacity: .91;
       border-radius: 8px;
-      color: #fff;
+      color: black;
+      font-weight: 700;
+      font-size: 16px;
       text-shadow: 0 7px 22px #cfcfcf;
       }
     }
-
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
-  }
+    .chatu{
+      position: relative;
+      left: 577px;
+      top: 57px;
+    }
+  // .show-pwd {
+  //   position: absolute;
+  //   right: 10px;
+  //   top: 7px;
+  //   font-size: 16px;
+  //   color: $dark_gray;
+  //   cursor: pointer;
+  //   user-select: none;
+  // }
 
 </style>

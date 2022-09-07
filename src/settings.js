@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '帝可得',
+  title: '元蜜蜂-WMS',
 
   /**
    * @type {boolean} true | false

@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import task from './modules/task'
-import node from './modules/node'
-import vm from './modules/vm'
-import user from './modules/user'
-import sku from './modules/sku'
-import policy from './modules/policy'
-import order from './modules/order'
-import report from './modules/report'
+import manageBaseInfo from './modules/manage-base-info'
+import manageBusiness from './modules/manage-business'
+
+import manageStorage from './modules/manage-storage'
+import manageStorageIn from './modules/manage-storage-in'
+
+import manageStorageOut from './modules/manage-storage-out'
+
 Vue.use(Router)
-const asyncRouter = [task, node, vm, user, sku, policy, order, report]
+export const asyncRoutes = [manageBaseInfo, manageBusiness, manageStorage, manageStorageIn, manageStorageOut]
 /* Layout */
 import Layout from '@/layout'
 
@@ -29,15 +29,15 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/home',
+    redirect: '/dashboard',
     children: [{
-      path: 'home',
-      name: 'home',
-      component: () => import('@/views/home'),
-      meta: { title: '帝可得', icon: 'home' }
+      path: 'dashboard',
+      name: 'dashboard',
+      component: () => import('@/views/dashboard'),
+      meta: { title: '工作台', icon: 'home' }
     }]
   },
-  ...asyncRouter,
+  ...asyncRoutes,
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

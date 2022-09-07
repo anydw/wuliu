@@ -5,7 +5,7 @@
 <script>
 export default {
   name: '',
-  components: {},
+
   data() {
     return {
 
@@ -25,5 +25,4 @@ export default {
 }
 </script>
 <style scoped>
-
 </style>

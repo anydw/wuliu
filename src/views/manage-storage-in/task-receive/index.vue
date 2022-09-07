@@ -1,11 +1,18 @@
 <template>
-  <div />
+  <div>
+    <head-search />
+    <con-table />
+  </div>
+
 </template>
 
 <script>
+import ConTable from './components/ConTable.vue'
+import HeadSearch from './components/HeadSearch.vue'
 export default {
   name: '',
-  components: {},
+  components: { HeadSearch, ConTable },
+
   data() {
     return {
 
@@ -25,5 +32,4 @@ export default {
 }
 </script>
 <style scoped>
-
 </style>

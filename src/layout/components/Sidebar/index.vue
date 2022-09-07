@@ -19,7 +19,7 @@
       <img class="icon" src="http://www-wms-java.itheima.net/img/avatar@2x.4f4a758f.png" alt="">
       <div class="title"> admin </div>
       <div class="divSplit" />
-      <img class="quit" src="@/assets/common/logout.png" alt="">
+      <img class="quit" src="@/assets/common/logout.png" alt="" @click="$router.push('/login')">
     </div>
   </div>
 </template>

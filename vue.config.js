@@ -44,6 +44,14 @@ module.exports = {
         //   // 重新路由  localhost:8888/api/login  => www.baidu.com/login
         //   '^/api': '' // 假设我们想把 localhost:8888/api/login 变成www.baidu.com/api/login 就需要这么做
         // }
+      },
+      '/ips': {
+        target: 'http://www-wms-java.itheima.net/',
+        changeOrigin: true
+        // pathRewrite: {
+        //   // 重新路由  localhost:8888/api/login  => www.baidu.com/login
+        //   '^/api': '' // 假设我们想把 localhost:8888/api/login 变成www.baidu.com/api/login 就需要这么做
+        // }
       }
     }
   },

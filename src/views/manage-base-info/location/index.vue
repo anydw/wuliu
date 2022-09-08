@@ -38,41 +38,46 @@
    </div>
    <!-- 表格 -->
     <el-table
+    :data='list'
     border
+    max-height="500"
     style="width: 100%;">
     <el-table-column
-      prop="date"
+      type="index"
       width="68">
     </el-table-column>
     <el-table-column
-      prop="name"
+      prop="warehouseName"
       label="所属仓库"
       width="160">
     </el-table-column>
     <el-table-column
-      prop="province"
+      prop="areaCode"
       label="库区编号"
       width="150">
     </el-table-column>
     <el-table-column
-      prop="city"
+      prop="areaName"
       label="库区名称"
       width="160">
     </el-table-column>
     <el-table-column
-      prop="address"
+      prop="code"
       label="库位编号"
       width="160">
     </el-table-column>
     <el-table-column
-      prop="zip"
+      prop="name"
       label="库位名称"
       width="160">
     </el-table-column>
       <el-table-column
-      prop="zip"
+      prop="常温"
       label="温度类型"
       width="120">
+      <template slot-scope="scope">
+        {{}}
+      </template>
     </el-table-column>
       <el-table-column
       prop="zip"
@@ -90,12 +95,12 @@
       width="160">
     </el-table-column>
       <el-table-column
-      prop="zip"
+      prop="maxVolume"
       label="承载上限"
       width="160">
     </el-table-column>
       <el-table-column
-      prop="zip"
+      prop="updateTime"
       label="更新时间"
       width="160">
     </el-table-column>
@@ -104,8 +109,9 @@
       label="操作"
       width="180">
       <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-        <el-button type="text" size="small">编辑</el-button>
+        <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
+        <el-button type="text" size="small">停用</el-button>
+        <el-button type="text" size="small">删除</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -122,6 +128,7 @@ export default {
   data() {
     return {
        hireType: [ {id: 0,value: '正式'},{id: 1,value: '非正式'}],
+       temperatureType:{cw:'常温'},
        page:{
         areaName:'',
         name:'',
@@ -144,7 +151,8 @@ export default {
     const res =await chaXunKuWeiApi(this.page)
     console.log(res);
     this.list=res.data.data.records
-   }
+   },
+   getLabel()
   }
 }
 </script>
@@ -222,6 +230,12 @@ background-color:#f8f5f5;
 }
 ::v-deep .el-table--border th, .el-table--group{
   border-color: #f5efee!important;
-
+}
+.el-button--text{
+  color: #ffb200;
+  font-size:13px;
+}
+::v-deep .el-table td, .el-table th{
+  padding:6px 0;
 }
 </style>

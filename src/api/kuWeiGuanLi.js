@@ -15,7 +15,7 @@ import request from '@/utils/request'
  * **/
  export function chaXunKuWeiApi(params) {
     return request({
-        url: 'http://www-wms-java.itheima.net/api/location/list',
+        url: '/location/pageDetail',
         params
     })
 }

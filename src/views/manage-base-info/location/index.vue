@@ -121,7 +121,14 @@ export default {
   components: {},
   data() {
     return {
-       hireType: [ {id: 0,value: '正式'},{id: 1,value: '非正式'}]
+       hireType: [ {id: 0,value: '正式'},{id: 1,value: '非正式'}],
+       page:{
+        areaName:'',
+        name:'',
+        current:1,
+        size:10
+       },
+       list:[]
     }
   },
   computed: {},
@@ -134,8 +141,9 @@ export default {
   },
   methods: {
    async chaXunKuWeiApi(){
-    const res =await chaXunKuWeiApi()
+    const res =await chaXunKuWeiApi(this.page)
     console.log(res);
+    this.list=res.data.data.records
    }
   }
 }

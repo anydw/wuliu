@@ -38,7 +38,7 @@ module.exports = {
     },
     proxy: {
       '/api': {
-        target: 'http://www-wms-java.itheima.net/api',
+        target: 'http://www-wms-java.itheima.net/',
         changeOrigin: true
         // pathRewrite: {
         //   // 重新路由  localhost:8888/api/login  => www.baidu.com/login

@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
-      <router-link key="collapse" class="sidebar-logo-link" to="/">
+      <router-link key="collapse" class="sidebar-logo-link" to="/home">
         <img src="@/assets/common/weitu.png" class="sidebar-logo">
       </router-link>
     </transition>

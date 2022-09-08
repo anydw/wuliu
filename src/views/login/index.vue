@@ -81,7 +81,7 @@ export default {
       try {
         // await this.$refs.loginForm.validate()
         // await this.$store.dispatch('user/login', this.loginForm)
-        this.$router.push('/home')
+        this.$router.push('/')
       } catch (error) {
         console.log(error.message)
       } finally {

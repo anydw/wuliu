@@ -1,5 +1,9 @@
 <template>
-  <div>1</div>
+  <div>
+    <div class="top_bar">
+      1
+    </div>
+  </div>
 </template>
 
 <script>
@@ -24,6 +28,6 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 
 </style>
